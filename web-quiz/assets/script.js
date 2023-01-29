@@ -8,7 +8,7 @@ const btnA = document.getElementById("a");
 const btnB = document.getElementById("b");
 const btnC = document.getElementById("c");
 const btnD = document.getElementById("d");
-const finEl = document.getElementById("final-score");
+const finalEl = document.getElementById("final-score");
 const resultEl = document.getElementById("result");
 const highScrCnt = document.getElementById("high-score-container");
 const highScrEl = document.getElementById("high-score-page");
@@ -117,8 +117,14 @@ const quizQuestions = [{
   }
 
   function displayFinalScore() {
-    quizBody.style.display = "none"
-    clearInterval(timerInterval);
+    quizBody.style.display = "none";
+    gameEnd.style.display = "block";
+    clearInterval(timerInterval); 
+    finalEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
   }
 
-  //Needs a score function figured out. Quiz isnt showing when we press 'Start' button. We need to be able to submit our buttons. Cursor is not currently working from CSS. We need to generate high-scores and show high-scores. We need functions to clear the quiz and replay the quiz. 
+  function highScores() {
+    highScrCnt.style.display = "block";
+  }
+
+  // We need to generate high-scores and show high-scores. We need functions to clear the quiz and replay the quiz. 
