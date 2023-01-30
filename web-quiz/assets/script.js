@@ -125,6 +125,37 @@ const quizQuestions = [{
 
   function highScores() {
     highScrCnt.style.display = "block";
+    let localStorageValue = localStorage.getItem("high-scores");
+    if (localStorageValue === null) {
+    localStorageValue = "[]"
+    }
+    let hiScoreArr = JSON.parse(localStorageValue);
+    let hiScore ={
+        "initials": highScrInt.value,
+         "score": score,
+        }
+    hiScoreArr.push(hiScore);
+    localStorage.setItem("high-scores", JSON.stringify(hiScoreArr));
+    let rows = "";
+    hiScoreArr.forEach(element => {
+        rows += "<tr>";
+        rows += "<td>" + element.initials + "</td>";
+        rows += "<td>" + element.score + "</td>";
+        rows += "</tr>";
+    });
+    document.getElementById("user-score").innerHTML = rows;
   }
 
+  function clearScores() {
+    localStorage.clear();
+  }
+
+  function replay() {
+    timeLeft = 60
+    score = 0
+    currentQuestionIndex = 0
+    highScrCnt.style.display = "none";
+    gameEnd.style.display = "none";
+    startQuizEl.style.display = "flex";
+  }
   // We need to generate high-scores and show high-scores. We need functions to clear the quiz and replay the quiz. 
